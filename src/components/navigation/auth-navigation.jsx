@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import Box from '@mui/material/Box'
-import { StyledButton } from '../../components/styled-button'
+import React from "react"
+import Box from "@mui/material/Box"
+import { StyledButton } from "../styled-button"
 
-const AuthNavigation: FC = () => {
+const AuthNavigation = () => {
   return (
-    <Box sx={{ '& button:first-of-type': { mr: 2 } }}>
+    <Box sx={{ "& button:first-of-type": { mr: 2 } }}>
       <StyledButton disableHoverEffect={true} variant="outlined">
         Sign In
       </StyledButton>

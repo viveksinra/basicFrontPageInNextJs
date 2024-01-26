@@ -1,21 +1,18 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import { Testimonial } from '@/interfaces/testimonial'
+import React from "react"
+import Image from "next/image"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 
-interface Props {
-  item: Testimonial
-}
-
-const TestimonialItem: FC<Props> = ({ item }) => {
+const TestimonialItem = ({ item }) => {
   return (
-    <Box sx={{ padding: '30px' }}>
+    <Box sx={{ padding: "30px" }}>
       <Box sx={{ mb: 2 }}>
         <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
           {item.title}
         </Typography>
-        <Typography sx={{ mb: 2, color: 'text.secondary' }}>{item.content}</Typography>
+        <Typography sx={{ mb: 2, color: "text.secondary" }}>
+          {item.content}
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -23,24 +20,24 @@ const TestimonialItem: FC<Props> = ({ item }) => {
           borderRadius: 1,
           px: 2,
           py: 2,
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
           width: 270,
-          backgroundColor: 'background.paper',
+          backgroundColor: "background.paper"
         }}
       >
         <Box
           sx={{
-            borderRadius: '50%',
+            borderRadius: "50%",
             height: 52,
             width: 52,
-            overflow: 'hidden',
+            overflow: "hidden",
             mr: 2,
 
-            '& img': {
-              width: '100%',
-            },
+            "& img": {
+              width: "100%"
+            }
           }}
         >
           <Image
@@ -53,7 +50,7 @@ const TestimonialItem: FC<Props> = ({ item }) => {
         </Box>
         <Box>
           <Typography variant="h6">{item.user.name}</Typography>
-          <Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
+          <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
             {item.user.professional}
           </Typography>
         </Box>
