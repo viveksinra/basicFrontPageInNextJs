@@ -1,19 +1,11 @@
-import React from 'react'
-import theme from '@/config/theme'
-import { NextComponentType } from 'next'
-import { AppInitialProps } from 'next/app'
-import { EmotionCache } from '@emotion/cache'
-import { createEmotionCache } from '@/utils'
-import createEmotionServer from '@emotion/server/create-instance'
-import { AppContextType, AppPropsType } from 'next/dist/shared/lib/utils'
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import React from "react"
+import theme from "@/config/theme"
+import { createEmotionCache } from "@/utils"
+import createEmotionServer from "@emotion/server/create-instance"
+import Document, { Html, Head, Main, NextScript } from "next/document"
 
-interface DocumentProps {
-  emotionStylesTags: any[]
-}
-
-class MyDocument extends Document<DocumentProps> {
-  render(): any {
+class MyDocument extends Document {
+  render() {
     return (
       <Html lang="en">
         <Head>
@@ -26,11 +18,18 @@ class MyDocument extends Document<DocumentProps> {
 
           <meta content="#fbfbfb" name="theme-color" />
           <meta content="#fbfbfb" name="msapplication-navbutton-color" />
-          <meta content="#fbfbfb" name="apple-mobile-web-app-status-bar-style" />
+          <meta
+            content="#fbfbfb"
+            name="apple-mobile-web-app-status-bar-style"
+          />
           <meta content="yes" name="apple-mobile-web-app-capable" />
 
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
           <link
             href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,700;1,500;1,700&display=swap"
             rel="stylesheet"
@@ -49,7 +48,7 @@ class MyDocument extends Document<DocumentProps> {
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+MyDocument.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
@@ -83,22 +82,20 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
     originalRenderPage({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      enhanceApp: (
-        App: NextComponentType<AppContextType, AppInitialProps, AppPropsType & { emotionCache: EmotionCache }>
-      ) =>
+      enhanceApp: App =>
         function EnhanceApp(props) {
           // console.log('props ->', props)
           return <App emotionCache={cache} {...props} />
-        },
+        }
     })
 
   const initialProps = await Document.getInitialProps(ctx)
   // This is important. It prevents emotion to render invalid HTML.
   // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html)
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
+  const emotionStyleTags = emotionStyles.styles.map(style => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
@@ -107,7 +104,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 
   return {
     ...initialProps,
-    emotionStyleTags,
+    emotionStyleTags
   }
 }
 
