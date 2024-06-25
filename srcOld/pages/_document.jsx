@@ -1,5 +1,5 @@
 import React from "react"
-import theme from "@/config/theme"
+import theme from "../config/theme"
 import { createEmotionCache } from "@/utils"
 import createEmotionServer from "@emotion/server/create-instance"
 import Document, { Html, Head, Main, NextScript } from "next/document"

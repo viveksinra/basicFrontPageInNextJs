@@ -1,7 +1,7 @@
 import React from "react"
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/styles"
-import { fontFamily } from "@/config/theme/typography"
+import { fontFamily } from "../../config/theme/typography"
 
 const StyledButtonRoot = styled("button", {
   shouldForwardProp: prop =>
